@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPS MAP</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        h1 {
+            margin: auto;
+            padding: 20px;
+            width: 100%;
+            text-align: center;
+            text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+        }
+        table {
+            width: 560px;
+            border: 1px solid #ddd
+        }
+        tr {
+            width: 30px;
+        }
+        #infoBox {
+            margin: auto;
+            height: 50px;
+            width: 90%;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+        }
+        #map {
+            margin: auto;
+            height: 80%;
+            width: 90%;
+            box-shadow:
+                0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+                0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+                0 12.5px 10px rgba(0, 0, 0, 0.06),
+                0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+                0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+                0 100px 80px rgba(0, 0, 0, 0.12);
+        }
+    </style>
+</head>
+<body>
+    <h1>GPS Service</h1>
+
+    <div id="infoBox">
+        <table>
+            <tr>
+                <td>Speed</td>
+                <td>Long</td>
+                <td>Lati</td>
+            </tr>
+            <tr>
+                <td id="speed"></td>
+                <td id="lng"></td>
+                <td id="lat"></td>
+            </tr>
+        </table>
+    </div>
+    
+    <div id="map"></div>
+
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+
+    <script>
+
+        var socket = io();
+
+        function initMap() {
+
+            var gstate = {
+            lat: 0,
+            lng: 0
+            };
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+            center: gstate,
+            zoom: 15
+            });
+
+            var marker = new google.maps.Marker({
+                position: gstate,
+                map: map,
+                title: 'Device Position'
+            });
+
+            socket.on('position', function(state) {
+
+                gstate.lat = state.lat;
+                gstate.lng = state.lon;
+
+                document.getElementById("speed").innerText = Math.round( (state.speed * 3.6) )
+                document.getElementById("lng").innerText = gstate.lng
+                document.getElementById("lat").innerText = gstate.lat
+
+                //var path = getErrorEllipse(1, 1);
+                console.log("GPS LAT.....: ", state.lat)
+                console.log("GPS LON.....: ", state.lon)
+                console.log("SPEED km/h..: ", Math.round( (state.speed * 3.6) ) )
+                console.log("-------------------")
+
+                //ellipse.setPaths(path);
+                map.setCenter(gstate);
+                marker.setPosition(gstate);
+            });
+        }
+
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADf2Ss5DEZdZMFEJ0f8fmi1KcYRZMYLZI&callback=initMap" async defer></script>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+
+  gpsd:
+    container_name: gpsd
+    restart: always
+    build:
+      context: ./
+    env_file:
+      - .env
+    ports:
+      - 4001:4001

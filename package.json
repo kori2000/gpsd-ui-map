@@ -1,0 +1,28 @@
+{
+  "name": "gpsd-ui-map",
+  "version": "1.0.0",
+  "description": "Share your Location on Google Maps UI with GPSD Service",
+  "main": "main.js",
+  "scripts": {
+    "start": "nodemon main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kori2000/gpsd-ui-map.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kori2000/gpsd-ui-map/issues"
+  },
+  "homepage": "https://github.com/kori2000/gpsd-ui-map#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "http": "0.0.1-security",
+    "node-gpsd-client": "^1.4.1",
+    "nodemon": "^2.0.12",
+    "socket.io": "^4.1.3"
+  }
+}
