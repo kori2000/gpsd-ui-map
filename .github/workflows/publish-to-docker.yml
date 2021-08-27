@@ -1,0 +1,17 @@
+name: Publish to Docker
+on:
+  push:
+    branches:
+      - main
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Publish to Docker
+      uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        name: kori2000/gpsd-ui-map
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+        registry: ghcr.io
