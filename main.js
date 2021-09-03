@@ -6,6 +6,8 @@ const http = require('http').Server(app)
 const io = require('socket.io')(http)
 const dotenv = require('dotenv')
 
+app.use(express.static(__dirname + '/public'));
+
 // Load ENV data
 dotenv.config()
 
@@ -55,4 +57,10 @@ app.get('/', function (req, res) {
   res.status(200)
   res.setHeader('Content-Type', 'text/html')
   res.sendFile(__dirname + '/public/index.html')
+})
+
+app.get('/map', function (req, res) {
+  res.status(200)
+  res.setHeader('Content-Type', 'text/html')
+  res.sendFile(__dirname + '/public/map.html')
 })
