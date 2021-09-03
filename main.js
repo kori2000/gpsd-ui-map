@@ -53,13 +53,13 @@ http.listen(EXPRESS_PORT, function() {
   console.log(`HTTPS / MAP on.........PORT : ${EXPRESS_PORT}`)
 })
 
-app.get('/test', function (req, res) {
+app.get('/', function (req, res) {
   res.status(200)
   res.setHeader('Content-Type', 'text/html')
   res.sendFile(__dirname + '/public/index.html')
 })
 
-app.get('/', function (req, res) {
+app.get('/map', function (req, res) {
   res.status(200)
   res.setHeader('Content-Type', 'text/html')
   res.sendFile(__dirname + '/public/map.html')

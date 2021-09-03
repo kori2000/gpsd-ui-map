@@ -2,119 +2,165 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GPS MAP</title>
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-        h1 {
-            margin: auto;
-            padding: 20px;
-            width: 100%;
-            text-align: center;
-            text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
-        }
-        table {
-            width: 560px;
-            border: 1px solid #ddd
-        }
-        tr {
-            width: 30px;
-        }
-        #infoBox {
-            margin: auto;
-            height: 50px;
-            width: 90%;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-        }
-        #map {
-            margin: auto;
-            height: 80%;
-            width: 90%;
-            box-shadow:
-                0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-                0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-                0 12.5px 10px rgba(0, 0, 0, 0.06),
-                0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-                0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-                0 100px 80px rgba(0, 0, 0, 0.12);
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>GPS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
 </head>
 <body>
-    <h1>GPS Service</h1>
 
-    <div id="infoBox">
-        <table>
-            <tr>
-                <td>Speed</td>
-                <td>Long</td>
-                <td>Lati</td>
-            </tr>
-            <tr>
-                <td id="speed"></td>
-                <td id="lng"></td>
-                <td id="lat"></td>
-            </tr>
-        </table>
+<header class="header">
+    <img src="images/db_logo.svg" alt="Deutsche Bahn Logo" width="56px" height="39px" class="logo" elementtiming="logo">
+</header>
+
+<!--Section: Contact v.1-->
+<div class="section pb-5" style="background-color: #f8f9fa">
+    <div style="padding-top: 100px">
     </div>
-    
-    <div id="map"></div>
+    <div class="container-fluid">
+        <div class="row">
 
-    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+            <!--Grid column-->
+            <div class="col-lg-5 mb-4">
 
-    <script>
+                <!--Form with header-->
+                <div class="card">
 
-        var socket = io();
+                    <div class="card-body">
+                        <!--Header-->
+                        <div class="form-header blue accent-1">
+                            <h3>GPS DATA</h3>
+                        </div>
 
-        function initMap() {
+                        <br>
 
-            var gstate = {
+                        <!--Body-->
+                        <div class="md-form icon">
+                            <img class="icn" src="images/gauge.png" alt="">
+                            <div class="desc">
+                                <p>Speed</p>
+                                <p id="speed"></p>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="md-form icon">
+                            <img class="icn" src="images/way.png" alt="">
+                            <div class="desc">
+                                <p>Longitude</p>
+                                <p id="lng"></p>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="md-form icon">
+                            <img class="icn" src="images/compass.png" alt="">
+                            <div class="desc">
+                                <p>Latitude</p>
+                                <p id="lat"></p>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="md-form icon">
+                            <img class="icn" src="images/clock.png" alt="">
+                            <div class="desc">
+                                <p>Time</p>
+                                <p id="time"></p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <!--Grid column-->
+            <div class="col-lg-7">
+
+                <!--Google map-->
+                <div id="map" class="z-depth-1-half map-container-6">
+                </div>
+            </div>
+            <!--Grid column-->
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+<!--Section: Contact v.1-->
+
+<footer class="rea-footer" role="contentinfo">
+    <ul class="cmp-metanavigation">
+        <li>
+            <a href="mailto:db.systel.ux.standards.anfrage@deutschebahn.com" class="elm-link "
+               title="Deutsche Bahn - Sample title">Kontakt</a>
+            <br>
+            <p>&copy; 2021 DB Systel</p>
+        </li>
+    </ul>
+</footer>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+<script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+
+<script type="application/javascript">
+
+    let socket = io();
+
+    function initMap() {
+
+        let gstate = {
             lat: 0,
             lng: 0
-            };
+        };
 
-            var map = new google.maps.Map(document.getElementById('map'), {
+        let map = new google.maps.Map(document.getElementById('map'), {
             center: gstate,
             zoom: 15
-            });
+        });
 
-            var marker = new google.maps.Marker({
-                position: gstate,
-                map: map,
-                title: 'Device Position'
-            });
+        let marker = new google.maps.Marker({
+            position: gstate,
+            map: map,
+            title: 'Device Position'
+        });
 
-            socket.on('position', function(state) {
+        socket.on('position', function (state) {
 
-                gstate.lat = state.lat;
-                gstate.lng = state.lon;
+            gstate.lat = state.lat;
+            gstate.lng = state.lon;
+            let timeWithZ = state.time.substring(state.time.indexOf("T") + 1);
+            let timeRound = timeWithZ.substring(0, timeWithZ.length - 5)
+            document.getElementById("speed").innerText = Math.round((state.speed * 3.6))
+            document.getElementById("lng").innerText = gstate.lng
+            document.getElementById("lat").innerText = state.lat
+            document.getElementById("time").innerText = timeRound;
 
-                document.getElementById("speed").innerText = Math.round( (state.speed * 3.6) )
-                document.getElementById("lng").innerText = gstate.lng
-                document.getElementById("lat").innerText = gstate.lat
+            //var path = getErrorEllipse(1, 1);
+            console.log("GPS LAT.....: ", state.lat)
+            console.log("GPS LON.....: ", state.lng)
+            console.log("GPS TIME.....: ", state.time)
+            console.log("SPEED km/h..: ", Math.round((state.speed * 3.6)))
+            console.log("-------------------")
 
-                //var path = getErrorEllipse(1, 1);
-                console.log("GPS LAT.....: ", state.lat)
-                console.log("GPS LON.....: ", state.lon)
-                console.log("SPEED km/h..: ", Math.round( (state.speed * 3.6) ) )
-                console.log("-------------------")
+            //ellipse.setPaths(path);
+            map.setCenter(gstate);
+            marker.setPosition(gstate);
+        });
+    }
 
-                //ellipse.setPaths(path);
-                map.setCenter(gstate);
-                marker.setPosition(gstate);
-            });
-        }
+</script>
 
-    </script>
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADf2Ss5DEZdZMFEJ0f8fmi1KcYRZMYLZI&callback=initMap" async defer></script>
-
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADf2Ss5DEZdZMFEJ0f8fmi1KcYRZMYLZI&callback=initMap"
+        async
+        defer></script>
 </body>
-</html>
