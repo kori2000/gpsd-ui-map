@@ -58,9 +58,3 @@ app.get('/', function (req, res) {
   res.setHeader('Content-Type', 'text/html')
   res.sendFile(__dirname + '/public/index.html')
 })
-
-app.get('/map', function (req, res) {
-  res.status(200)
-  res.setHeader('Content-Type', 'text/html')
-  res.sendFile(__dirname + '/public/map.html')
-})
